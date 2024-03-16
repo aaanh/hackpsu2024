@@ -35,7 +35,7 @@ export function NavBar() {
           </Link>
         </NavigationMenuItem>
       </NavigationMenuList>
-      <NavigationMenuList className="ml-auto">
+      <NavigationMenuList>
         <NavigationMenuItem>
           <ThemeToggle></ThemeToggle>
         </NavigationMenuItem>
