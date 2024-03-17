@@ -7,9 +7,18 @@ import { Button } from "@/components/ui/button";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { v4 as uuidv4 } from "uuid";
 
-const UploadForm = () => {
-  const [history, setHistory] = useState([]);
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableFooter,
+  TableHead,
+  TableHeader,
+  TableRow
+} from "@/components/ui/table";
 
+const UploadForm = () => {
   const user = useUser();
 
   const formRef = useRef();
@@ -38,6 +47,8 @@ const UploadForm = () => {
     formData.append("user_id", user.user.sub);
     formData.append("session_id", session_id);
 
+    localStorage.setItem("session_id", session_id);
+
     // await fetch('/api/upload', {
     //   method: 'POST',
     //   body: formData,
@@ -55,23 +66,53 @@ const UploadForm = () => {
 
   return (
     <form action={handleUpload} ref={formRef}>
-      <input type="file" accept="" multiple onChange={handleInputFiles} />
-      <ul>
-        {files.map((file, index) => (
-          <div key={index} className="my-1">
-            {index + 1}. {file.name} ({(file.size / (1024 * 1024)).toFixed(2)}{" "}
-            MB) &nbsp;
-            <Button
-              variant={"destructive"}
-              type="button"
-              onClick={() => handleDeleteFile(index)}
-            >
-              Delete
-            </Button>
-          </div>
-        ))}
-      </ul>
+      <input
+        className="mb-4"
+        type="file"
+        accept=""
+        multiple
+        onChange={handleInputFiles}
+      />
       <ButtonSubmit value="Upload" />
+      <br></br>
+
+      <Table>
+        <TableCaption>Files selected for upload</TableCaption>
+        <TableHeader>
+          <TableRow>
+            <TableHead className="w-[100px]">#</TableHead>
+            <TableHead>File name</TableHead>
+            <TableHead>File size</TableHead>
+            <TableHead className="text-right"></TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {files.map((file, index) => (
+            <TableRow key={index}>
+              <TableCell className="font-medium">{index + 1}</TableCell>
+              <TableCell>{file.name}</TableCell>
+              <TableCell>
+                {(file.size / (1024 * 1024)).toFixed(2)} {" MB"}
+              </TableCell>
+              <TableCell className="text-right">
+                <Button
+                  variant={"destructive"}
+                  type="button"
+                  onClick={() => handleDeleteFile(index)}
+                >
+                  Delete
+                </Button>
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+        {/* <TableFooter>
+          <TableRow>
+            <TableCell colSpan={3}>Total Size</TableCell>
+            <TableCell className="text-right">{files.forEach()}</TableCell>
+          </TableRow>
+        </TableFooter> */}
+      </Table>
     </form>
   );
 };

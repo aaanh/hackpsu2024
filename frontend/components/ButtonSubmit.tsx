@@ -6,7 +6,12 @@ const ButtonSubmit = ({ value, ...props }: { value: any }) => {
   const { pending } = useFormStatus();
 
   return (
-    <Button className="w-full" disabled={pending} {...props}>
+    <Button
+      onClick={() => window.location.reload()}
+      className="w-full mt-2"
+      disabled={pending}
+      {...props}
+    >
       {pending ? "Loading..." : value}
     </Button>
   );
