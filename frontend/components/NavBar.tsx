@@ -24,7 +24,7 @@ export function NavBar() {
   const user = useUser();
 
   return pathname !== "/login" ? (
-    <NavigationMenu className="justify-between min-w-full flex p-2 sticky top-0">
+    <NavigationMenu className="justify-between min-w-full flex p-2 sticky -top-10">
       <NavigationMenuList>
         <NavigationMenuItem>
           <Link href="/" legacyBehavior passHref>
@@ -40,7 +40,7 @@ export function NavBar() {
             <NavigationMenuItem>
               <Link href="/user" legacyBehavior passHref>
                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                  <FaUser></FaUser> &nbsp; Profile
+                  <FaUser></FaUser> &nbsp; User Profile
                 </NavigationMenuLink>
               </Link>
             </NavigationMenuItem>
@@ -54,7 +54,7 @@ export function NavBar() {
           </>
         ) : (
           <NavigationMenuItem>
-            <Link href="/login" legacyBehavior passHref>
+            <Link href="/api/auth/login" legacyBehavior passHref>
               <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                 <FaLockOpen></FaLockOpen> &nbsp; Login
               </NavigationMenuLink>

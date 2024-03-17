@@ -19,7 +19,7 @@ export default function Home() {
   }
 
   return (
-    <main className="w-full flex items-center justify-center flex-col">
+    <main className="w-full flex items-center min-h-[92vh] justify-center flex-col">
       {user.user ? (
         <>
           <UploadForm></UploadForm>

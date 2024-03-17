@@ -17,7 +17,7 @@ export default function LoginPage() {
     <div className="flex items-center justify-center w-full min-h-screen flex-col">
       <div className="text-center">
         <Button className="w-full" onClick={handleLogin} size={"lg"}>
-          Login with email
+          Login
         </Button>
       </div>
     </div>

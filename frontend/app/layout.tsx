@@ -12,7 +12,7 @@ connectDB();
 
 // either Static metadata
 export const metadata: Metadata = {
-  title: "Attention is all you need (AIAYN)",
+  title: "Can't Cheat with This",
   description:
     "We're totally not directly touching transformers in another AI/ML/NN application!!??!!"
 };
