@@ -12,7 +12,8 @@ export default function Home() {
     fetch(`https://backend.cantcheatwiththis.tech/analyze/${session_id}`, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*"
       },
       mode: "cors",
       body: JSON.stringify({ session_id })
