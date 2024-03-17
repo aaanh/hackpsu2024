@@ -4,6 +4,9 @@ from motor.motor_asyncio import AsyncIOMotorClient
 from fastapi.middleware import Middleware
 from fastapi.middleware.cors import CORSMiddleware
 from pdfResponse import pdfResponse
+from flask_cors import CORS
+
+cors = CORS(app, resoures={r"/analyze/*": {"origins": "*"}})
 
 app = Flask(__name__)
 # MongoDB connection URL
