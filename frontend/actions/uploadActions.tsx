@@ -1,10 +1,12 @@
 "use server";
 import path from "path";
 import fs from "fs/promises";
-import { v4 as uuidv4 } from "uuid";
+
 import os from "os";
 import { v2 as cloudinary } from "cloudinary";
 import FileModel from "@/models/fileModel";
+import { useUser } from "@auth0/nextjs-auth0/client";
+import { User } from "lucide-react";
 
 const cloud_name = "daseayvyl";
 const api_key = "285678358993975";
@@ -22,11 +24,13 @@ async function saveFileToLocal(formData: any) {
   const promises = files.map((file: any) =>
     file.arrayBuffer().then((data: any) => {
       const buffer = Buffer.from(data);
-      const name = uuidv4();
       const ext = file.type.split("/")[1];
 
       const tempDir = os.tmpdir();
-      const uploadPath = path.join(tempDir, `${name}.${ext}`);
+      const uploadPath = path.join(
+        tempDir,
+        `${file.name}-${formData.session_id}.${ext}`
+      );
 
       fs.writeFile(uploadPath, buffer);
 
@@ -57,6 +61,8 @@ export async function uploadFile(formData: any) {
     // save files to mongoDB
     const newPdfFiles = pdfFiles.map((file) => {
       const newFile = new FileModel({
+        user_id: formData.get("user_id"),
+        session_id: formData.get("session_id"),
         public_id: file.public_id,
         secure_url: file.secure_url
       });

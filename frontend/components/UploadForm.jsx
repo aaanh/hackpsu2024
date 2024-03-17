@@ -3,20 +3,20 @@ import { useRef, useState } from "react";
 import ButtonSubmit from "./ButtonSubmit";
 import { uploadFile } from "@/actions/uploadActions";
 import React from "react";
+import { Button } from "@/components/ui/button";
+import { useUser } from "@auth0/nextjs-auth0/client";
+import { v4 as uuidv4 } from "uuid";
 
 const UploadForm = () => {
+  const [history, setHistory] = useState([]);
+
+  const user = useUser();
+
   const formRef = useRef();
   const [files, setFiles] = useState([]);
 
   async function handleInputFiles(e) {
     const files = e.target.files;
-
-    // configure max file size (10MB) and type
-    // const newFiles = [...files].filter((file) => {
-    //   if (file.type === 'application/pdf' && file.size < 10000000) {
-    //     return file;
-    //   }
-    // });
 
     setFiles((prev) => [...files, ...prev]);
     formRef.current.reset();
@@ -28,11 +28,15 @@ const UploadForm = () => {
   }
 
   async function handleUpload() {
+    const session_id = uuidv4();
     const formData = new FormData();
 
     files.forEach((file) => {
       formData.append("files", file);
     });
+
+    formData.append("user_id", user.user.sub);
+    formData.append("session_id", session_id);
 
     // await fetch('/api/upload', {
     //   method: 'POST',
@@ -54,11 +58,16 @@ const UploadForm = () => {
       <input type="file" accept="" multiple onChange={handleInputFiles} />
       <ul>
         {files.map((file, index) => (
-          <div key={index}>
-            {file.name} ({(file.size / (1024 * 1024)).toFixed(2)} MB)
-            <button type="button" onClick={() => handleDeleteFile(index)}>
+          <div key={index} className="my-1">
+            {index + 1}. {file.name} ({(file.size / (1024 * 1024)).toFixed(2)}{" "}
+            MB) &nbsp;
+            <Button
+              variant={"destructive"}
+              type="button"
+              onClick={() => handleDeleteFile(index)}
+            >
               Delete
-            </button>
+            </Button>
           </div>
         ))}
       </ul>
