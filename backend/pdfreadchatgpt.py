@@ -1,16 +1,32 @@
 # je veux mourir
 
 from openai import OpenAI
+import requests
+import fitz
 
-from io import BytesIO
+# URL of the PDF file
 
-import boto3
-from PyPDF2 import PdfReader
+# test pdf of linear algerbra practice problems
+pdf_url = "https://res.cloudinary.com/daseayvyl/image/upload/v1710653761/hackspsu2024/n6q0cbiqafofumssgtta.pdf"
+
+# test pdf of resume
+# pdf_url = "https://res.cloudinary.com/daseayvyl/image/upload/v1710654150/hackspsu2024/wqbp9on9628o77wisqdx.pdf" 
 
 
-s3 = boto3.client("s3")
-obj = s3.get_object(Body=csv_buffer.getvalue(), Bucket="my-bucket", Key="https://res.cloudinary.com/daseayvyl/image/upload/v1710653761/hackspsu2024/n6q0cbiqafofumssgtta.pdf")
-reader = PdfReader(BytesIO(obj["Body"].read()))
+# Changing a PDF to text
+response = requests.get(pdf_url)
+
+if response.status_code == 200:
+    pdf_bytes = response.content
+    doc = fitz.open("pdf", pdf_bytes)
+
+    text = ""
+    for page in doc:
+        text += page.get_text()
+
+    # print(text)
+else:
+    print("Failed to download the PDF")
 
 # TODO: dotenv api key in the future
 chatgptahpeeaye = "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"
@@ -38,4 +54,4 @@ message = helper.beta.threads.messages.create(
   role="user",
   content="summarize the content for me please.",
   file_ids=[file.id]
-)
+)# )
