@@ -72,6 +72,12 @@ async def get_file_link(session_id):
 
 @app.post("/analyze/{session_id}")
 async def analyze(session_id: str):
+    document = await collection.find_one({'session_id': session_id})
+    if document:
+        msg = await pdfResponse(document['secure_url'])
+        return msg
+    else:
+        return None  # or raise an exception or return a default URL
 
 
 

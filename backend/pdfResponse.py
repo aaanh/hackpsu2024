@@ -7,8 +7,7 @@ from main import get_file_link
 openai_api_key = "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"
 
 
-async def pdfResponse(session_id):
-    pdf_url = await get_file_link(session_id)
+async def pdfResponse(pdf_url):
     response = requests.get(pdf_url)
 
     if response.status_code == 200:
