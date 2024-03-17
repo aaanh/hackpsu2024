@@ -4,6 +4,7 @@ import fs from 'fs/promises';
 import { v4 as uuidv4 } from 'uuid';
 import os from 'os';
 import {v2 as cloudinary} from 'cloudinary';
+import FileModel from '@/models/fileModel';
 
 cloudinary.config({
   cloud_name: 'daseayvyl',
@@ -46,7 +47,16 @@ export async function uploadFile(formData) {
 
         const pdfFiles = await uploadFileToCloudinary(newFiles);
 
-        await Promise.all(newFiles.map(file => fs.unlink(file.filepath)));
+        newFiles.map(file => fs.unlink(file.filepath));
+        
+        // save files to mongoDB
+        const newPdfFiles = pdfFiles.map(file => {
+            const newFile = new FileModel({public_id: file.public_id, secure_url: file.secure_url});
+            return newFile;
+        });
+
+        console.log(newPdfFiles);
+        // await FileModel.insertMany(newPdfFiles);
 
         return { msg: 'Upload Success' }
 

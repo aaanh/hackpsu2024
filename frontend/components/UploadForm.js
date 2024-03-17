@@ -11,9 +11,9 @@ const UploadForm = () => {
   async function handleInputFiles(e) {
     const files = e.target.files;
 
-    // configure max file size and type
+    // configure max file size (10MB) and type
     // const newFiles = [...files].filter((file) => {
-    //   if (file.type === 'application/pdf' && file.size < 15000000) {
+    //   if (file.type === 'application/pdf' && file.size < 10000000) {
     //     return file;
     //   }
     // });
@@ -40,6 +40,13 @@ const UploadForm = () => {
     // });
 
     const res = await uploadFile(formData);
+    if(res?.msg) alert(`Success: ${res.msg}`);
+    if(res?.error) alert(`Error: ${res.error}`);
+
+    setFiles([]);
+    formRef.current.reset();
+
+    // revalidatePath("/"); // revalidate the path to update the UI
   }
 
   return (

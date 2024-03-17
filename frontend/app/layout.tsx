@@ -6,6 +6,9 @@ import { UserProvider } from "@auth0/nextjs-auth0/client";
 import { ThemeProvider } from "@/components/theme-provider";
 import { NavBar } from "@/components/NavBar";
 import UploadForm from "@/components/UploadForm";
+import connectDB from "@/utils/database";
+
+connectDB();
 
 const inter = Inter({ subsets: ["latin"] });
 
