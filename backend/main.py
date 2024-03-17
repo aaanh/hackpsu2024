@@ -33,9 +33,23 @@ app = FastAPI(middleware=middleware)
 # MongoDB connection URL
 uri = "mongodb+srv://master:E1kbhQJAQGKtHmAp@hackspsu2024.6k320ih.mongodb.net/"
 
+origins = [
+    "https://cantcheatwiththis.tech",
+    "https://backend.cantcheatwiththis.tech",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 client = AsyncIOMotorClient(uri)
 db = client["test5"]
 collection = db["files"]
+
 
 def file_helper(file) -> dict:
     return {
@@ -57,7 +71,7 @@ async def get_file_link(session_id):
         return None  # or raise an exception or return a default URL
 
 
-@app.post("/analyze/{session_id}")
+@app.post("/analyze/{session_id}", response_model=str, )
 async def analyze(session_id: str):
     document = await collection.find_one({'session_id': session_id})
     if document:
@@ -78,4 +92,3 @@ async def get_documents():
         # Log the exception here
         print(f"An error occurred while fetching documents: {e}")
         raise HTTPException(status_code=500, detail=str(e))
-
