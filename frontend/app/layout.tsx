@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import { UserProvider } from "@auth0/nextjs-auth0/client";
 import { ThemeProvider } from "@/components/theme-provider";
 import { NavBar } from "@/components/NavBar";
+import UploadForm from "@/components/UploadForm";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -34,6 +35,7 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             <NavBar></NavBar>
+            <UploadForm></UploadForm>
             {children}
           </ThemeProvider>
         </body>
