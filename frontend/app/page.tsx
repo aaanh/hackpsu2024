@@ -14,6 +14,7 @@ export default function Home() {
       headers: {
         "Content-Type": "application/json"
       },
+      mode: "cors",
       body: JSON.stringify({ session_id })
     });
   }
