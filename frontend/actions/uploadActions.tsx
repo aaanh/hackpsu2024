@@ -6,9 +6,9 @@ import os from "os";
 import { v2 as cloudinary } from "cloudinary";
 import FileModel from "@/models/fileModel";
 
-const cloud_name = process.env.CLOUDINARY_CLOUD_NAME;
-const api_key = process.env.CLOUDINARY_API_KEY;
-const api_secret = process.env.CLOUDINARY_API_SECRET;
+const cloud_name = "daseayvyl";
+const api_key = "285678358993975";
+const api_secret = "hmWNjvKM6apBM9uAAropW2mZOpc";
 
 cloudinary.config({
   cloud_name: cloud_name,
