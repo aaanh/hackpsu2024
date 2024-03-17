@@ -55,8 +55,8 @@ export async function uploadFile(formData) {
             return newFile;
         });
 
-        console.log(newPdfFiles);
-        // await FileModel.insertMany(newPdfFiles);
+        // console.log(newPdfFiles);
+        await FileModel.insertMany(newPdfFiles);
 
         return { msg: 'Upload Success' }
 
