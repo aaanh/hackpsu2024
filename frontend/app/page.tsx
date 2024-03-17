@@ -9,7 +9,7 @@ export default function Home() {
 
   function startAnalysis() {
     const session_id = localStorage.getItem("session_id");
-    fetch(`/api/analysis?session_id=${session_id}`, {
+    fetch(`https://backend.cantcheatwiththis.tech/analyze/${session_id}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

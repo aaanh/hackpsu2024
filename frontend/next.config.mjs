@@ -12,7 +12,8 @@ const nextConfig = {
     serverActions: {
       allowedOrigins: [
         "http://localhost:3000",
-        "https://cantcheatwiththis.tech"
+        "https://cantcheatwiththis.tech",
+        "https://backend.cantcheatwiththis.tech"
       ]
     }
   },
