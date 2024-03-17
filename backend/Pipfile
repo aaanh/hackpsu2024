@@ -10,6 +10,7 @@ frontend = "*"
 tools = "*"
 fastapi = "*"
 motor = "*"
+flask = "*"
 
 [dev-packages]
 

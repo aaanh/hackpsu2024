@@ -1,24 +1,25 @@
 from fastapi import FastAPI, HTTPException
+from flask import Flask
 from motor.motor_asyncio import AsyncIOMotorClient
 from starlette.middleware.cors import CORSMiddleware
 from pdfResponse import pdfResponse
 
-app = FastAPI()
+app = Flask(__name__)
 # MongoDB connection URL
 uri = "mongodb+srv://master:E1kbhQJAQGKtHmAp@hackspsu2024.6k320ih.mongodb.net/"
 
-origins = [
-    "https://cantcheatwiththis.tech",
-    "https://backend.cantcheatwiththis.tech",
-]
+# origins = [
+#     "https://cantcheatwiththis.tech",
+#     "https://backend.cantcheatwiththis.tech",
+# ]
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+# app.add_middleware(
+#     CORSMiddleware,
+#     allow_origins=["*"],
+#     allow_credentials=True,
+#     allow_methods=["*"],
+#     allow_headers=["*"],
+# )
 
 client = AsyncIOMotorClient(uri)
 db = client["test5"]
@@ -45,7 +46,7 @@ async def get_file_link(session_id):
         return None  # or raise an exception or return a default URL
 
 
-@app.post("/analyze/{session_id}", response_model=str, )
+@app.route("/analyze/<session_id>", methods=["POST"])
 async def analyze(session_id: str):
     document = await collection.find_one({'session_id': session_id})
     if document:
@@ -55,7 +56,7 @@ async def analyze(session_id: str):
         return None  # or raise an exception or return a default URL
 
 
-@app.get("/documents/")
+@app.route("/documents/")
 async def get_documents():
     try:
         files = []
