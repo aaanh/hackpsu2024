@@ -8,6 +8,8 @@ from pydantic.functional_validators import BeforeValidator
 from typing_extensions import Annotated
 from bson import ObjectId
 
+import pdfResponse
+
 app = FastAPI()
 # MongoDB connection URL
 uri = "mongodb+srv://master:E1kbhQJAQGKtHmAp@hackspsu2024.6k320ih.mongodb.net/"
@@ -41,10 +43,11 @@ collection = db["files"]
 #         "secure_url": file["secure_url"],
 #         "session_id": file["session_id"],
 #     }
-    
+
 # @app.get("/files", response_model=FileCollection, response_model_by_alias=False)
 # async def get_files():
 #     return FileCollection(files=await app.collection.find().to_list(1000))
+
 
 def file_helper(file) -> dict:
     return {
@@ -52,6 +55,7 @@ def file_helper(file) -> dict:
         "secure_url": file["secure_url"],
         "session_id": file["session_id"],
     }
+
 
 def find_link(file):
     return file['secure_url']
@@ -63,6 +67,14 @@ async def get_file_link(session_id):
         return document['secure_url']
     else:
         return None  # or raise an exception or return a default URL
+
+
+@app.post("/analyze/{session_id}")
+async def analyze(session_id: str):
+    loop = asyncio.get_event_loop()
+    result = loop.run_until_complete(pdfResponse(session_id))
+    print(result)
+
 
 @app.get("/documents/")
 async def get_documents():
