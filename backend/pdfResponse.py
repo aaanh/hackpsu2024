@@ -1,7 +1,6 @@
 from openai import OpenAI
 import requests
 import fitz
-import asyncio
 
 openai_api_key = "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"
 
@@ -43,10 +42,3 @@ async def pdfResponse(pdf_url):
     response = get_response([default_msg, user_msg])
 
     return response
-
-
-# if __name__ == "__main__":
-#     loop = asyncio.get_event_loop()
-#     result = loop.run_until_complete(pdfResponse("0505df04-7489-4c14-ac66-cd44b5201c94"))
-
-# print(result)
