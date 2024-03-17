@@ -1,10 +1,13 @@
 from openai import OpenAI
 import requests
 import fitz
+import asyncio
+from main import get_file_link
 
 openai_api_key = "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"
 
-def pdfResponse(pdf_url):
+async def pdfResponse(session_id):
+    pdf_url = await get_file_link(session_id)
     response = requests.get(pdf_url)
 
     if response.status_code == 200:
@@ -38,3 +41,10 @@ def pdfResponse(pdf_url):
     response = get_response([default_msg, user_msg])
     
     return response
+
+
+if __name__ == "__main__":
+    loop = asyncio.get_event_loop()
+    result = loop.run_until_complete(pdfResponse("0505df04-7489-4c14-ac66-cd44b5201c94"))
+
+print(result)

@@ -16,11 +16,11 @@ URL = "mongodb+srv://seansongss:kl5ru1y1v29PvS3x@hackspsu2024.6k320ih.mongodb.ne
 client = AsyncIOMotorClient(uri)
 db = client["test5"]
 collection = db["files"]
-try:
-    client.admin.command('ping')
-    print("Successfully connected to MongoDB!")
-except Exception as e:
-    print(f"Error connecting to MongoDB: {e}")
+# try:
+#     client.admin.command('ping')
+#     print("Successfully connected to MongoDB!")
+# except Exception as e:
+#     print(f"Error connecting to MongoDB: {e}")
 
 # class FileModel(BaseModel):
 #     id: Optional[PyObjectId] = Field(alias="_id", default=None)
@@ -52,7 +52,18 @@ def file_helper(file) -> dict:
         "secure_url": file["secure_url"],
         "session_id": file["session_id"],
     }
-    
+
+def find_link(file):
+    return file['secure_url']
+
+
+async def get_file_link(session_id):
+    document = await collection.find_one({'session_id': session_id})
+    if document:
+        return document['secure_url']
+    else:
+        return None  # or raise an exception or return a default URL
+
 @app.get("/documents/")
 async def get_documents():
     try:
