@@ -47,8 +47,8 @@ async def pdfResponse(session_id):
     return response
 
 
-# if __name__ == "__main__":
-#     loop = asyncio.get_event_loop()
-#     result = loop.run_until_complete(pdfResponse("0505df04-7489-4c14-ac66-cd44b5201c94"))
+if __name__ == "__main__":
+    loop = asyncio.get_event_loop()
+    result = loop.run_until_complete(pdfResponse("0505df04-7489-4c14-ac66-cd44b5201c94"))
 
-# print(result)
+print(result)

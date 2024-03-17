@@ -8,7 +8,8 @@ from pydantic.functional_validators import BeforeValidator
 from typing_extensions import Annotated
 from bson import ObjectId
 
-import pdfResponse
+from backend.pdfResponse import pdfResponse
+
 
 app = FastAPI()
 # MongoDB connection URL
@@ -71,9 +72,7 @@ async def get_file_link(session_id):
 
 @app.post("/analyze/{session_id}")
 async def analyze(session_id: str):
-    loop = asyncio.get_event_loop()
-    result = loop.run_until_complete(pdfResponse(session_id))
-    print(result)
+
 
 
 @app.get("/documents/")
