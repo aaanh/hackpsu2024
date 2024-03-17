@@ -38,7 +38,7 @@ export function NavBar() {
         ) : user.user ? (
           <>
             <NavigationMenuItem>
-              <Link href="/profile" legacyBehavior passHref>
+              <Link href="/user" legacyBehavior passHref>
                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                   <FaUser></FaUser> &nbsp; Profile
                 </NavigationMenuLink>
