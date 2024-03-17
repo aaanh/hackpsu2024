@@ -8,10 +8,8 @@ app = FastAPI()
 uri = "mongodb+srv://master:E1kbhQJAQGKtHmAp@hackspsu2024.6k320ih.mongodb.net/"
 
 origins = [
-    "http://localhost.tiangolo.com",
-    "https://localhost.tiangolo.com",
-    "http://localhost",
-    "http://localhost:8080",
+    "https://cantcheatwiththis.tech",
+    "https://backend.cantcheatwiththis.tech",
 ]
 
 app.add_middleware(
