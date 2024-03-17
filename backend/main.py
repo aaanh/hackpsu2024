@@ -8,7 +8,7 @@ from pydantic.functional_validators import BeforeValidator
 from typing_extensions import Annotated
 from bson import ObjectId
 
-from backend.pdfResponse import pdfResponse
+from pdfResponse import pdfResponse
 
 
 app = FastAPI()
@@ -78,7 +78,6 @@ async def analyze(session_id: str):
         return msg
     else:
         return None  # or raise an exception or return a default URL
-
 
 
 @app.get("/documents/")
