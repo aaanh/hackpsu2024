@@ -14,7 +14,8 @@ origins = [
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=["https://cantcheatwiththis.tech",
+                   "https://backend.cantcheatwiththis.tech"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -45,7 +46,7 @@ async def get_file_link(session_id):
         return None  # or raise an exception or return a default URL
 
 
-@app.post("/analyze/{session_id}")
+@app.post("/analyze/{session_id}", response_model=str)
 async def analyze(session_id: str):
     document = await collection.find_one({'session_id': session_id})
     if document:
