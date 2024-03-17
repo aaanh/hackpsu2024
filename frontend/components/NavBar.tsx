@@ -18,6 +18,7 @@ import { FaHome, FaUser } from "react-icons/fa";
 import { usePathname } from "next/navigation";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { FaLock, FaLockOpen } from "react-icons/fa6";
+import Image from "next/image";
 
 export function NavBar() {
   const pathname = usePathname();
@@ -29,7 +30,13 @@ export function NavBar() {
         <NavigationMenuItem>
           <Link href="/" legacyBehavior passHref>
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              <FaHome></FaHome>
+              <Image
+                className="bg-red-400 p-2 rounded-xl"
+                src="/logo.png"
+                alt="logo"
+                width="75"
+                height="75"
+              ></Image>
             </NavigationMenuLink>
           </Link>
         </NavigationMenuItem>
