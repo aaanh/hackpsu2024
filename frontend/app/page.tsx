@@ -4,6 +4,7 @@ import UploadForm from "@/components/UploadForm";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import { CommandDemo } from "@/components/ui/command";
 
 export default function Home() {
   const user = useUser();
@@ -29,6 +30,10 @@ export default function Home() {
   return (
     <main className="w-full flex items-center min-h-[92vh] justify-center flex-col">
       {user.user ? (
+        <h1 className="text-4xl">
+          Please login to get started with document analysis.
+        </h1>
+      ): (
         <>
           <UploadForm></UploadForm>
           <br></br>
@@ -40,11 +45,8 @@ export default function Home() {
               Start Analysis
             </Button>
           ) : null}
+          <input type="text" placeholder="Type command for help..." />
         </>
-      ) : (
-        <h1 className="text-4xl">
-          Please login to get started with document analysis.
-        </h1>
       )}
     </main>
   );
