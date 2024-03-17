@@ -40,7 +40,6 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             <NavBar></NavBar>
-            <UploadForm></UploadForm>
             {children}
           </ThemeProvider>
         </body>

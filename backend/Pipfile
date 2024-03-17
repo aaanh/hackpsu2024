@@ -5,7 +5,6 @@ name = "pypi"
 
 [packages]
 openai = "*"
-boto3 = "*"
 
 [dev-packages]
 
