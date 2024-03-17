@@ -26,7 +26,6 @@ export default function Home() {
       console.error(err);
     }
   }
-
   return (
     <main className="w-full flex items-center min-h-[92vh] justify-center flex-col">
       {user.user ? (

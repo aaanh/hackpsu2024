@@ -28,6 +28,7 @@ const UploadForm = () => {
     const files = e.target.files;
 
     setFiles((prev) => [...files, ...prev]);
+    console.log(files);
     formRef.current.reset();
   }
 
@@ -43,7 +44,6 @@ const UploadForm = () => {
     files.forEach((file) => {
       formData.append("files", file);
     });
-
     formData.append("user_id", user.user.sub);
     formData.append("session_id", session_id);
 

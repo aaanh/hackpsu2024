@@ -1,7 +1,8 @@
 from fastapi import FastAPI, HTTPException
 from flask import Flask
 from motor.motor_asyncio import AsyncIOMotorClient
-from starlette.middleware.cors import CORSMiddleware
+from fastapi.middleware import Middleware
+from fastapi.middleware.cors import CORSMiddleware
 from pdfResponse import pdfResponse
 
 app = Flask(__name__)
