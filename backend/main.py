@@ -1,9 +1,35 @@
 from fastapi import FastAPI, HTTPException
 from motor.motor_asyncio import AsyncIOMotorClient
-
+from fastapi.middleware import Middleware
+from fastapi.middleware.cors import CORSMiddleware
 from pdfResponse import pdfResponse
 
-app = FastAPI()
+# app = FastAPI()
+origins = [
+    "https://cantcheatwiththis.tech/",
+    "https://backend.cantcheatwiththis.tech/",
+]
+
+# app.add_middleware(
+#     CORSMiddleware,
+#     allow_origins=origins,
+#     allow_credentials=True,
+#     allow_methods=["*"],
+#     allow_headers=["*"],
+# )
+
+middleware = [
+    Middleware(
+        CORSMiddleware,
+        allow_origins=origins,
+        allow_credentials=True,
+        allow_methods=['*'],
+        allow_headers=['*']
+    )
+]
+
+app = FastAPI(middleware=middleware)
+
 # MongoDB connection URL
 uri = "mongodb+srv://master:E1kbhQJAQGKtHmAp@hackspsu2024.6k320ih.mongodb.net/"
 
