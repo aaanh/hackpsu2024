@@ -1,15 +1,31 @@
 from fastapi import FastAPI, HTTPException
 from motor.motor_asyncio import AsyncIOMotorClient
-
+from fastapi.middleware.cors import CORSMiddleware
 from pdfResponse import pdfResponse
 
 app = FastAPI()
 # MongoDB connection URL
 uri = "mongodb+srv://master:E1kbhQJAQGKtHmAp@hackspsu2024.6k320ih.mongodb.net/"
 
+origins = [
+    "http://localhost.tiangolo.com",
+    "https://localhost.tiangolo.com",
+    "http://localhost",
+    "http://localhost:8080",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 client = AsyncIOMotorClient(uri)
 db = client["test5"]
 collection = db["files"]
+
 
 def file_helper(file) -> dict:
     return {
@@ -52,4 +68,3 @@ async def get_documents():
         # Log the exception here
         print(f"An error occurred while fetching documents: {e}")
         raise HTTPException(status_code=500, detail=str(e))
-
