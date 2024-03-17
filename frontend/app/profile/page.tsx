@@ -7,7 +7,7 @@ export default function ProfilePage() {
   const userCtx = useUser();
 
   return (
-    <div className="flex items-center justify-center w-full min-h-screen flex-col">
+    <div className="flex items-center justify-center w-full flex-col">
       <div className="text-center">
         <h1 className="text-4xl pointer-events-none hover:pointer-events-none">
           Profile

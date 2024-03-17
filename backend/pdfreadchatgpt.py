@@ -1,5 +1,6 @@
 # je veux mourir
 
+import os
 from openai import OpenAI
 import requests
 import fitz
