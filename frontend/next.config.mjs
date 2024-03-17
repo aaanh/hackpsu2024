@@ -7,6 +7,14 @@ const nextConfig = {
         hostname: "**"
       }
     ]
+  },
+  experimental: {
+    serverActions: {
+      allowedOrigins: [
+        "http://localhost:3000",
+        "https://cantcheatwiththis.tech"
+      ]
+    }
   }
 };
 

@@ -31,6 +31,8 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
+    "**/*.jsx",
+    "**/*.js",
     ".next/types/**/*.ts",
     "components/ButtonSubmit.jsx"
   ],
