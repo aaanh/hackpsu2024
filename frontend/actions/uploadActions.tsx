@@ -26,7 +26,7 @@ async function saveFileToLocal(formData: any) {
       const ext = file.type.split("/")[1];
 
       const tempDir = os.tmpdir();
-      const uploadPath = path.join(process.cwd(), `/temp/${name}.${ext}`);
+      const uploadPath = path.join(tempDir, `${name}.${ext}`);
 
       fs.writeFile(uploadPath, buffer);
 
