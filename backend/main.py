@@ -16,11 +16,11 @@ URL = "mongodb+srv://seansongss:kl5ru1y1v29PvS3x@hackspsu2024.6k320ih.mongodb.ne
 client = AsyncIOMotorClient(uri)
 db = client["test5"]
 collection = db["files"]
-try:
-    client.admin.command('ping')
-    print("Successfully connected to MongoDB!")
-except Exception as e:
-    print(f"Error connecting to MongoDB: {e}")
+# try:
+#     client.admin.command('ping')
+#     print("Successfully connected to MongoDB!")
+# except Exception as e:
+#     print(f"Error connecting to MongoDB: {e}")
 
 # class FileModel(BaseModel):
 #     id: Optional[PyObjectId] = Field(alias="_id", default=None)
