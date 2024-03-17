@@ -3,7 +3,6 @@ from motor.motor_asyncio import AsyncIOMotorClient
 
 from pdfResponse import pdfResponse
 
-
 app = FastAPI()
 # MongoDB connection URL
 uri = "mongodb+srv://master:E1kbhQJAQGKtHmAp@hackspsu2024.6k320ih.mongodb.net/"
@@ -53,3 +52,4 @@ async def get_documents():
         # Log the exception here
         print(f"An error occurred while fetching documents: {e}")
         raise HTTPException(status_code=500, detail=str(e))
+

@@ -1,6 +1,7 @@
 from openai import OpenAI
 import requests
 import fitz
+import asyncio
 
 openai_api_key = "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"
 
