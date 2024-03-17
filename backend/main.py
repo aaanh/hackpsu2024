@@ -8,8 +8,7 @@ from pydantic.functional_validators import BeforeValidator
 from typing_extensions import Annotated
 from bson import ObjectId
 
-from backend.pdfResponse import pdfResponse
-
+from pdfResponse import  pdfResponse
 
 app = FastAPI()
 # MongoDB connection URL
@@ -92,3 +91,4 @@ async def get_documents():
         # Log the exception here
         print(f"An error occurred while fetching documents: {e}")
         raise HTTPException(status_code=500, detail=str(e))
+
