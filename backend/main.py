@@ -1,6 +1,6 @@
 from fastapi import FastAPI, HTTPException
 from motor.motor_asyncio import AsyncIOMotorClient
-from fastapi.middleware.cors import CORSMiddleware
+from starlette.middleware.cors import CORSMiddleware
 from pdfResponse import pdfResponse
 
 app = FastAPI()
@@ -14,8 +14,7 @@ origins = [
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://cantcheatwiththis.tech",
-                   "https://backend.cantcheatwiththis.tech"],
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -46,7 +45,7 @@ async def get_file_link(session_id):
         return None  # or raise an exception or return a default URL
 
 
-@app.post("/analyze/{session_id}", response_model=str)
+@app.post("/analyze/{session_id}", response_model=str, )
 async def analyze(session_id: str):
     document = await collection.find_one({'session_id': session_id})
     if document:
