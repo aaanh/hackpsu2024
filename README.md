@@ -29,3 +29,7 @@ Features: Rich media document analysis
   - Vercel (old)
   - Baremetal VPS on Linode (current)
 - LLM provider: Azure OpenAI studio
+
+## Architecture Diagram (first draft)
+
+![image](https://github.com/aaanh/hackpsu2024/assets/37283437/e29bca47-1022-4e02-be8a-1562508e94da)
