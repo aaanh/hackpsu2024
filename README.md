@@ -36,4 +36,4 @@ Features: Rich media document analysis
 
 ## Post scripts
 
-Note from @aaanh: Very enlightening experience for me as HackPSU was my first ever hackathon after having only organized hackathons. Gained new perspectives and knowledge on how amazing products could be developed within the span of less than 24 hours.
+Note from @aaanh: Very enlightening experience for me as HackPSU was my first ever hackathon that I participated, after having only organized hackathons. Gained new perspectives and knowledge on how amazing products could be developed within the span of less than 24 hours.
